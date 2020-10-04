@@ -141,7 +141,7 @@ In the html I created a task template with html tag `<template>`, tasks containe
   <textarea class="create-task__textarea" placeholder="Task title"></textarea>
 
   <button class="btn btn--bg-blue create-task__submit" type="submit" disabled>
-    App task
+    Create
   </button>
 </form>
 ```
