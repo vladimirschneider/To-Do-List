@@ -1,4 +1,4 @@
-# Simple To-Do list using localstorage
+# Simple To-Do list using localstorage 📝👨🏼‍💻
 
 I think everyone is familiar with the To-Do list development.
 
