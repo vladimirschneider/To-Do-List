@@ -2,33 +2,33 @@
 
 I think everyone is familiar with the To-Do list development.
 
-In the post i wanna give my resolve of the task.
+In the post I want to give my resolve of the task.
 
-Tasks which I resolved in the post:
+Tasks which should be resolved in the post:
 
-1. Storage To-Do list
-2. Create, update and delete task
+1. Storing To-Do list
+2. Creating, updating and deleting task
 
-## Storage
+## Storing
 
-To-Do list i storage in `localstorage`, so for start I create a simple interface for working with localstorage.
+To-Do list i will storage in `localstorage`, so for a start I will create a simple interface for working with localstorage.
 
-Lists of tasks storage as array of objects.
+Storing tasks list as an array of objects.
 
-In the interface constructor I get data from `localstorage` and write to `this.tasks`.
+In the interface constructor I will get data from `localstorage` and write to `this.tasks`.
 
 ```javascript
 export default class LocalStorage {
   constructor() {
-    // if item by key `tasks` is not defined JSON.parse return null, so we use `or empty array`
+    // if item by key `tasks` is not defined JSON.parse returns null, so we use `or empty array`
     this.tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   }
 }
 ```
 
-Now need methods of create, update and delete tasks.
+Now we need methods of creating, updating and deleting tasks.
 
-Methods very simple. For example method for create a task.
+Methods are very simple. For example, this is the method for creating a task:
 
 ```javascript
 export default class LocalStorage {
@@ -44,7 +44,7 @@ export default class LocalStorage {
 
 In the method I update `this.tasks` and `localstorage item`.
 
-For an update or delete a task I need find a task in the array. I create getter `get token` for generate a random token for it. Let's update the `create` method. Here I added `getIndexByToken` method for search index of task in `this.tasks` for update or delete a task.
+For an updating or deleting a task I need to find a task in the array. I create getter `get token` to generate a random token for it. Let's update the `create` method. Here I added `getIndexByToken` method to search index of task in `this.tasks` to update or delete a task.
 
 ```javascript
 export default class LocalStorage {
@@ -72,7 +72,7 @@ export default class LocalStorage {
 }
 ```
 
-So, everything that's needed for `update` method find the index of the task, check that not equal `-1`, update object by the index and rewrite `localstorage tasks`. Similarly, for `delete` method: find the index of the task, delete from `this.tasks`, rewrite `localstorage item`.
+So, everything that's needed for `update` method is to find the index of the task, check if it’s not equal `-1`, update object by the index and rewrite `localstorage tasks`. Similarly, for `delete` method: to find the index of the task, delete from `this.tasks`, rewrite `localstorage item`.
 
 ```javascript
 export default class LocalStorage {
@@ -104,9 +104,9 @@ export default class LocalStorage {
 
 ## Solution
 
-Go to common solution.
+Let’s move on to the common solution.
 
-So I need create class exemplar and get tasks list. Create, update and delete tasks do with this class exemplar.
+So I need create class exemplar and get tasks list. Creating, updating and deleting tasks we will do with this class exemplar.
 
 ```javascript
 import LocalStorage from './LocalStorage.js';
@@ -159,9 +159,9 @@ const createTaskField = document.querySelector('.create-task__textarea');
 const createTaskButton = document.querySelector('.create-task__submit');
 ```
 
-So, I need iterate over tasks list from `LocalStorage`.
+So, I need to iterate over tasks list from `LocalStorage`.
 
-Create `onCreateTask` function for create task in html and elements events. I use  `onCreateTask` method for create tasks at iterate over tasks at the beginning and for create a new task in the form by submit event.
+Create `onCreateTask` function for creating task in the html and elements events. I use  `onCreateTask` method to create tasks for iterating over tasks at the beginning and for creating a new task in the form by a submit event.
 
 ```javascript
 function onCreateTask({data}) {
@@ -205,9 +205,9 @@ function toggleTaskStatusClass({checked, task}) {
 }
 ```
 
-The method turned out to be quite simple. I search elements, set correct data and events. After it append the child in tasks container.
+The method turned out to be quite simple. I search elements, set correct data and events. After it append the element in tasks container.
 
-About `toggleTaskStatusClass` method. Tell me what do you think about it. Usually I do not do this. I did it here for example and know your opinion.
+For a `toggleTaskStatusClass` method. Tell me what do you think about it. Usually I do not do this. I did it here for example and to know your opinion.
 
 So, iterate over tasks with onCreateTask method and create form submit event.
 
@@ -236,7 +236,7 @@ createTaskForm.addEventListener('submit', (e) => {
 });
 ```
 
-That's all. We can run demo and try create tasks.
+That's all. We can run demo and try to create tasks.
 
 Thank you.
 
