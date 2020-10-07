@@ -1,34 +1,30 @@
 # Simple To-Do list using localstorage 📝👨🏼‍💻
 
-I think everyone is familiar with the To-Do list development.
+I think everyone has probably faced the To-Do list development. In this post I'd like to share how to build a simple one using localstorage. 
 
-In the post I want to give my resolve of the task.
+Our application will allow:
 
-Tasks which should be resolved in the post:
+1. To store To-Do list
+2. To create, update and delete tasks
 
-1. Storing To-Do list
-2. Creating, updating and deleting task
+## Storage
 
-## Storing
+I am going to keep our list in`localstorage`, so I will start with a simple interface for working with tasks and `localstorage`. I am going to store our tasks in an array of objects. 
 
-To-Do list i will storage in `localstorage`, so for a start I will create a simple interface for working with localstorage.
-
-Storing tasks list as an array of objects.
-
-In the interface constructor I will get data from `localstorage` and write to `this.tasks`.
+I will get our data from `localstorage` and write to`this.tasks`. in the interface constructor:
 
 ```javascript
 export default class LocalStorage {
   constructor() {
-    // if item by key `tasks` is not defined JSON.parse returns null, so we use `or empty array`
+    // if item by key `tasks` is not defined JSON.parse return null, so I use `or empty array`
     this.tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   }
 }
 ```
 
-Now we need methods of creating, updating and deleting tasks.
+Now I need methods to create, update and delete tasks.
 
-Methods are very simple. For example, this is the method for creating a task:
+Methods are going to be very simple. For example, here is the method for creating a task:
 
 ```javascript
 export default class LocalStorage {
@@ -42,9 +38,9 @@ export default class LocalStorage {
 }
 ```
 
-In the method I update `this.tasks` and `localstorage item`.
+In this method I update `this.tasks` and `localstorage item`.
 
-For an updating or deleting a task I need to find a task in the array. I create getter `get token` to generate a random token for it. Let's update the `create` method. Here I added `getIndexByToken` method to search index of task in `this.tasks` to update or delete a task.
+To update or delete a task I need to find it in the array first. I will create a getter `get token` to generate a random token for it and will update our `create` method. Here I are also adding a`getIndexByToken` method to search for a task index in `this.tasks` in order to update or delete it.
 
 ```javascript
 export default class LocalStorage {
@@ -72,7 +68,7 @@ export default class LocalStorage {
 }
 ```
 
-So, everything that's needed for `update` method is to find the index of the task, check if it’s not equal `-1`, update object by the index and rewrite `localstorage tasks`. Similarly, for `delete` method: to find the index of the task, delete from `this.tasks`, rewrite `localstorage item`.
+Now the only thing I need to update a task is to find its index, check if it's not  `-1`, update the object by an index found and rewrite `localstorage tasks`. Similarly, for `delete` method I need to find an index, delete a respective object from `this.tasks`, and rewrite `localstorage item`.
 
 ```javascript
 export default class LocalStorage {
@@ -102,11 +98,11 @@ export default class LocalStorage {
 }
 ```
 
-## Solution
+## Application
 
-Let’s move on to the common solution.
+Now lets build our application.
 
-So I need create class exemplar and get tasks list. Creating, updating and deleting tasks we will do with this class exemplar.
+First, I need to create an instance of our class and get a list of task. I will create, update and delete the tasks using this instance.
 
 ```javascript
 import LocalStorage from './LocalStorage.js';
@@ -116,7 +112,7 @@ const storage = new LocalStorage();
 const tasks = storage.tasks;
 ```
 
-In the html I created a task template with html tag `<template>`, tasks container and form for create a task.
+Then I will create a html task template with html tag `<template>`, tasks container, and a task creation form.
 
 ```html
 <template id="task">
@@ -146,7 +142,7 @@ In the html I created a task template with html tag `<template>`, tasks containe
 </form>
 ```
 
-Find all the elements.
+Here I will get all these elements:
 
 ```javascript
 //...
@@ -159,9 +155,9 @@ const createTaskField = document.querySelector('.create-task__textarea');
 const createTaskButton = document.querySelector('.create-task__submit');
 ```
 
-So, I need to iterate over tasks list from `LocalStorage`.
+Now I just need to iterate over task list from `LocalStorage`.
 
-Create `onCreateTask` function for creating task in the html and elements events. I use  `onCreateTask` method to create tasks for iterating over tasks at the beginning and for creating a new task in the form by a submit event.
+I will create `onCreateTask` function that will create tasks and add main events there:
 
 ```javascript
 function onCreateTask({data}) {
@@ -205,11 +201,11 @@ function toggleTaskStatusClass({checked, task}) {
 }
 ```
 
-The method turned out to be quite simple. I search elements, set correct data and events. After it append the element in tasks container.
+The method turned out to be quite simple. I search for objects, set correct data and events, and append the child to container.
 
-For a `toggleTaskStatusClass` method. Tell me what do you think about it. Usually I do not do this. I did it here for example and to know your opinion.
+Let's look at  `toggleTaskStatusClass` method - usually this is not how I code things like that, and I shared it as example only. What's your take on it? Please don't hesitate to comment. 
 
-So, iterate over tasks with onCreateTask method and create form submit event.
+Now I will iterate over tasks with onCreateTask method and create a form submit event.
 
 ```javascript
 tasks.forEach((data) => {
@@ -236,8 +232,8 @@ createTaskForm.addEventListener('submit', (e) => {
 });
 ```
 
-That's all. We can run demo and try to create tasks.
-
-Thank you.
+That's all! Time for a demo. 
 
 [Demo](https://vladimirschneider.github.io/To-Do-List/)
+
+Thank you.
